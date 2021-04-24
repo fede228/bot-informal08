@@ -133,6 +133,7 @@ if (message.content == "/embsend") {
 client.on("voiceStateUpdate",(oldState,newState) => {
   var categoryid = "835567056123854857";
   var channelid = "835567228891168829";
+  
   let emojis = ["👑", "🤡", "🌚", "😈", "🤖", "🎅", "👻", "✨", "⚡️", "🐹"]
   var random_emoji = Math.floor(Math.random() * emojis.length);
   if(newState.channel?.id == channelid) {
