@@ -8,7 +8,7 @@ module.exports = {
   description: 'Блокирует пользователя',
   run: (client, message, args) => {
     const errorEmbed = require('../../Utils/error')
-    if (!message.member.roles.cache.some(r => r.name == '⚙ Chief Moderator ⚙') && !message.member.hasPermission('BAN_MEMBERS')) {
+    if (!message.member.roles.cache.some(r => r.id == '788807482243547197') && !message.member.hasPermission('BAN_MEMBERS')) {
       return message.channel.send(errorEmbed(message.client, 'У вас нету прав на использование данной команды.')).then(d_msg => { 
         d_msg.delete({timeout: 10000})});
     }

