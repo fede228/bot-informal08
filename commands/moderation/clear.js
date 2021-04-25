@@ -2,11 +2,12 @@
 const { MessageEmbed } = require('discord.js');
 
 module.exports = {
-    name: 'clear',
-    aliases: ['clear'],
+    name: 'clearing',
+    aliases: ['clearing'],
     description: 'Удалять сообщения',
     run: (client, message, args) => {
     const errorEmbed = require('../../Utils/error')
+    var myid = "449699809700610049"; 
     if (!message.member.roles.cache.some(r => r.id == '655528442825015297') && !message.member.hasPermission('MANAGE_MESSAGES')) {
         return message.channel.send(errorEmbed(message.client, 'У вас нету прав на использование данной команды.')).then(d_msg => { 
           d_msg.delete({timeout: 10000})});
