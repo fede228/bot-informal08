@@ -12,7 +12,7 @@ module.exports = {
               ];
               const lmember = message.guild.roles.cache.find(r => r.id === '835801927992344597'); // общая роль легал мемберс
               const errorEmbed = require('../../Utils/error')
-             let logChannel = message.guild.channels.cache.find((c) => c.id == "835553389177077771"); // id лог канала (ПОМЕНЯЕШЬ!)
+             let logChannel = message.guild.channels.cache.find((c) => c.id == "789602745312477194"); // id лог канала (ПОМЕНЯЕШЬ!)
             if (message.content.toLowerCase().includes("сними") || message.content.toLowerCase().includes("снять")) {
                 if (!message.member.roles.cache.some(r => r.id == '655528442825015297')&& !message.member.hasPermission("MANAGE_ROLES"))
                 return message.channel.send(errorEmbed(message.client, 'У вас не достаточно прав')).then(d_msg => { 
