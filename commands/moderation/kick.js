@@ -13,7 +13,9 @@ module.exports = {
         d_msg.delete({timeout: 10000})});
     }
 
-    const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
+    const member = message.guild.member(
+      message.mentions.users.first() || message.guild.members.cache.get(args[0]),
+    );
     if (!member) {
       return message.channel.send(errorEmbed(message.client, 'Не удалось найти пользователя')).then(d_msg => { 
         d_msg.delete({timeout: 10000})});
@@ -32,7 +34,7 @@ module.exports = {
       return message.channel.send(errorEmbed(message.client, 'У меня недостаточно прав для кика!')).then(d_msg => { 
         d_msg.delete({timeout: 10000})});
     }
-
+    member.send(new MessageEmbed() .setFooter('© Команда модерации | Informal') .setThumbnail(member.user.avatarURL({format: 'png', dynamic: true, size: 1024})).setAuthor(message.guild.name, message.guild.iconURL({ format: 'png', dynamic: true, size: 1024 })) .setColor('RED').setTitle('Система выдачи kick') .setTimestamp() .setDescription(`**Вы были кикнуты!\nМодератор: ${message.author}\nПричина: ${reason}\nЕсли вы не согласны с наказанием, вы можете подать жалобу - [в этой теме](https://forum.robo-hamster.ru/forums/214/)**`))
     message.reply(
       new MessageEmbed()
         .setColor('#0094ef')
@@ -43,7 +45,6 @@ module.exports = {
         .addField('Модератор:', `${message.author}`)
         .addField('Причина', reason));
 // Сообщение о кике
-member.send(new MessageEmbed() .setFooter('© Команда модерации | Informal') .setThumbnail(member.user.avatarURL({format: 'png', dynamic: true, size: 1024})).setAuthor(message.guild.name, message.guild.iconURL({ format: 'png', dynamic: true, size: 1024 })) .setColor('RED').setTitle('Система выдачи kick') .setTimestamp() .setDescription(`**Вы были кикнуты!\nМодератор: ${message.author}\nПричина: ${reason}\nЕсли вы не согласны с наказанием, вы можете подать жалобу - [в этой теме](https://forum.robo-hamster.ru/forums/214/)**`))
 member.kick(reason + " / " + message.member.displayName);
     // Сообщение в ЛС кикнотому и кик с самого сервера
     return message.delete();

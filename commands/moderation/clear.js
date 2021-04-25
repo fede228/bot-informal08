@@ -1,6 +1,6 @@
 'use strict';
 const { MessageEmbed } = require('discord.js');
-
+// НЕ ЮЗАЙ ПОКА, САМ ПОТОМ СДЕЛАЮ ЗАЕБИСЬ.
 module.exports = {
     name: 'clearing',
     aliases: ['clearing'],
@@ -24,7 +24,6 @@ module.exports = {
   if(del > 100)
   return message.channel.send(errorEmbed(message.client, 'Укажите пожалуйста кол-во сообщений меньше 100')).then(d_msg => { 
     d_msg.delete({timeout: 10000})});
-  message.channel.bulkDelete(args[0]), // удаляем число сообщений
 
 message.reply(
     new MessageEmbed()
@@ -34,4 +33,5 @@ message.reply(
       .setAuthor(`Очистка сообщений`, message.guild.iconURL({dynamic:true}))
       .setDescription(`**Удалено cледующее количество сообщений: \`${del}\` \nМодератор: ${message.author}**`)) .then(d_msg => { 
         d_msg.delete({timeout: 10000})});
+        message.channel.bulkDelete(args[0]) // удаляем число сообщений
       }}
