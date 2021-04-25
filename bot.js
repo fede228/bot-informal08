@@ -51,7 +51,7 @@ let setembed_addline = ["нет", "нет", "нет", "нет", "нет", "не�
 
 client.on('message', message => {
 if (message.content.startsWith("/embsetup")) {
-    if (message.channel.name != '📢┃инфомейкер') return
+    if (message.channel.id != '833748406462840850') return
     const args = message.content.slice(`/embsetup`).split(/ +/);
     if (!args[1]) {
         message.reply(`\`укажите, что вы установите! Ниже предоставлен список настроек.\`\n\`[1] - Название\`\n\`[2] - Описание\`\n\`[3] - Цвет [#FFFFFF]\`\n\`[4] - Время\`\n\`[5] - Картинка\`\n\`[6] - Подпись\`\n\`[7] - Картинка к подписи\`\n\`[8] - Миниатюра\``);
@@ -110,7 +110,7 @@ if (message.content.startsWith("/embsetup")) {
 }
 
 if (message.content == "/embsend") {
-    if (!message.member.hasPermission("ADMINISTRATOR")) return
+  if (!message.member.roles.cache.some(r => r.id == '834025345576861696')) return
     const embed = new MessageEmbed();
     if (setembed_general[0] != "не указано") embed.setTitle(setembed_general[0]);
     if (setembed_general[1] != "не указано") embed.setDescription(setembed_general[1]);
@@ -168,6 +168,7 @@ client.on('message', message => {
                 message.delete();
     })
 }})
+
 
 
 client.on('message', message => {

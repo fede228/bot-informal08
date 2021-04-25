@@ -25,16 +25,16 @@ module.exports = {
         d_msg.delete({timeout: 10000})});
     }
 
-    let muterole = message.guild.roles.cache.find(x => x.name === 'Muted').then(d_msg => { 
-      d_msg.delete({timeout: 10000})});
+    const muteRole = message.guild.roles.cache.find(role => role.name === 'Muted');
 
 
-    if (user.roles.cache.has(muterole)) {
+
+    if (user.roles.cache.has(muteRole)) {
       return message.channel.send(errorEmbed('Пользователь не замучен.')).then(d_msg => { 
         d_msg.delete({timeout: 10000})});
     }
 
-    user.roles.remove(muterole);
+    user.roles.remove(muteRole);
 
     message.reply(
       new MessageEmbed()
