@@ -8,8 +8,9 @@ module.exports = {
 
         client.on('message', message => {
             const rolesToRemove = [
-                "[-] Samparo" // добавляешь роли через запятую, на пример: const rolesToRemove = ["[-] Samparo","ещё роль","ещё роль"]
+                "[-] Samparo", "[-] Kratos", "[-] illegals member", "[-] legals member" // добавляешь роли через запятую, на пример: const rolesToRemove = ["[-] Samparo","ещё роль","ещё роль"]
               ];
+              
               const lmember = message.guild.roles.cache.find(r => r.id === '835801927992344597'); // общая роль легал мемберс
               const errorEmbed = require('../../Utils/error')
              let logChannel = message.guild.channels.cache.find((c) => c.id == "789602745312477194"); // id лог канала (ПОМЕНЯЕШЬ!)
