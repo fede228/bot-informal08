@@ -169,5 +169,38 @@ client.on('message', message => {
     })
 }})
 
+client.on('ready', () => {
+    members(); // Прогон при запуске
+  });
+  
+  setInterval(() => {
+    members()
+  }, 300000); // Прогон каждые 5 минут
+  
+  function members() {
+    let server = client.guilds.cache.get('649963967220940821');
+    let channel = server.channels.cache.get('836966580482211890');
+  
+   let samparo = `${server.roles.cache.find(role => role.name == 'Leader "Samparo"').members.map(m => m.displayName)}`;
+    let mortem = `${server.roles.cache.find(role => role.name == 'Leaders "Post Mortem"').members.map(m => m.displayName)}`;
+    let kratos = `${server.roles.cache.find(role => role.name == 'Leader "Kratos"').members.map(m => m.displayName)}`;
+    let svoboda = `${server.roles.cache.find(role => role.name == 'Leader Адвокатской Конторы "Свобода"').members.map(m => m.displayName)}`;
+    let gs = `${server.roles.cache.find(role => role.id == '649965985201127462').members.map(m => m.displayName)}`;
+  
+    channel.messages.fetch('836966660211998720').then(async online_message => {
+     if (!online_message) return console.error(`Ошибка вывода online_message()`);
+     online_message.edit(null, {embed: {
+          description: `\`\`\`md\n# Лидеры неофициальных организаций\`\`\``,
+          color: 0x8533ff,
+          setTimestamp:('') ,
+          fields:[
+              { name: `Фракция:`, value: '**Главный следящий \n`illegal` Samparo \n`illegal` Post Mortem\n`legal` Kratos\n`legal` Адвокатская контора "Свобода"**', inline: true },
+              { name: `Лидеры:`, value: `${gs ? gs : 'Нет ГСа'}\n${samparo ? samparo : 'Нет лидера'}\n${mortem ? mortem : 'Нет лидера'}\n${kratos ? kratos : 'Нет лидера'}\n${svoboda ? svoboda : 'Нет лидера'}`, inline: true }
+          ]
+      }});
+    }).catch(() => {
+        console.error(`Не получилось найти сообщение в online_info. Ошибка.`);
+    });
+  }
 
 client.login(process.env.token);
